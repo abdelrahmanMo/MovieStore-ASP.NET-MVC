@@ -1,0 +1,37 @@
+﻿@model List<VidlyStore.Models.Customer >
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="col-lg-12">
+    <div class="ibox float-e-margins">
+        <h1>Customers</h1>
+        @Html.ActionLink("New Customer","New","Customer",new{@class="btn btn-primary " , @style="margin-bottom:4px;"})
+        <div class="ibox-content">
+           
+                <table id="customers" class="table table-hover table-bordered">
+                    <thead>
+                    <tr>
+                        <th>Customer</th>
+                        <th>Membership Type</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+               
+               
+
+                    </tbody>
+                </table>
+         
+
+        </div>
+    </div>
+</div>
+@section scripts
+{
+    <script src="~/Scripts/AppScript/CustomerJs.js"></script>
+}

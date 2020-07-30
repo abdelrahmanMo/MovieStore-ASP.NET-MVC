@@ -1,0 +1,45 @@
+﻿@model VidlyStore.Models.Customer
+@{
+    ViewBag.Title = Model.Title;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h2>New Customer</h2>
+@using (@Html.BeginForm("Save", "Customers"))
+            {
+
+                <div class="row">
+                    @Html.ValidationSummary(true,"Please fix the following errors.")
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Name)
+                        @Html.TextBoxFor(m => m.Name ,new {@class="form-control"})
+                        @Html.ValidationMessageFor(m=>m.Name)
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.BirthDate)
+                        @Html.TextBoxFor(m => m.BirthDate, "{0: d MMM yyyy}" ,new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m =>m.BirthDate)
+                    </div>
+                    
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.MemberShipTypeId)
+                        @Html.DropDownListFor(m => m.MemberShipTypeId, new SelectList(ViewBag.MembershipType, "value", "text"), "Select Membership", new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m=>m.MemberShipTypeId)
+                    </div>
+
+                    <div class="checkbox">
+                        <label>
+                            @Html.CheckBoxFor(m => m.IsSubscribedToNewsletter) Subscribe To Newsletter?
+                        </label>
+                    </div>
+                    
+                </div>
+                @Html.HiddenFor(m=>m.Id)
+                @Html.AntiForgeryToken()
+                <button type="submit" class="btn btn-primary">Submit</button>
+            }
+@section scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+}
